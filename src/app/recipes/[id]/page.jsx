@@ -75,17 +75,7 @@ export default function RecipeDetailPage() {
           </Link>
         </div>
 
-        {/* Recipe Header */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-2 mb-4">
-            <Badge variant="secondary">{recipe.difficulty}</Badge>
-            <Badge variant="outline">{recipe.cuisine}</Badge>
-            {recipe.tags.map((tag) => (
-              <Badge key={tag} variant="outline">
-                {tag}
-              </Badge>
-            ))}
-          </div>
+        
 
           <h1 className="font-serif text-4xl font-bold mb-4">{recipe.title}</h1>
           <p className="text-lg text-muted-foreground mb-4">{recipe.description}</p>
@@ -105,7 +95,20 @@ export default function RecipeDetailPage() {
             <span>•</span>
             <span>{new Date(recipe.createdAt).toLocaleDateString()}</span>
           </div>
+          {/* Recipe Header */}
+        <div className="mb-8">
+          <div className="flex flex-wrap gap-2 mb-4">
+            <Badge variant="secondary">{recipe.difficulty}</Badge>
+            <Badge variant="outline">{recipe.cuisine}</Badge>
+            {recipe.tags.map((tag) => (
+              <Badge key={tag} variant="outline">
+                {tag}
+              </Badge>
+            ))}
+          </div>
         </div>
+
+        
 
         {/* Recipe Image */}
         <div className="mb-8">

@@ -31,20 +31,8 @@ export function Navigation() {
                 />
               </svg>
             </div>
-            <span className="font-serif text-xl font-bold">Recipe Book</span>
+            <span className="font-serif text-xl font-bold">TastyTales</span>
           </Link>
-
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/recipes" className="text-foreground hover:text-primary transition-colors">
-              Browse Recipes
-            </Link>
-            {user && (
-              <Link href="/add-recipe" className="text-foreground hover:text-primary transition-colors">
-                Add Recipe
-              </Link>
-            )}
-          </div>
 
           {/* Auth Section */}
           <div className="flex items-center space-x-4">

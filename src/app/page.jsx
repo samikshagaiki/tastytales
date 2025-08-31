@@ -1,143 +1,144 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Navigation } from "@/components/navigation"
+import { Footer } from "@/components/footer"
+import { Bookmark } from "lucide-react"
+import { Calendar } from "lucide-react"
+import {Users} from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { Utensils, Share2, Search } from "lucide-react"
 
 export default function HomePage() {
+  // --- Slideshow backgrounds ---
+  const backgrounds = [
+    "/images/hero1.jpg",
+    "/images/hero2.jpg",
+    "/images/hero3.jpg",
+  ]
+  const [bgIndex, setBgIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % backgrounds.length)
+    }, 5000) // rotate every 5s
+    return () => clearInterval(interval)
+  }, [])
+
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-amber-50 text-slate-800">
       <Navigation />
 
-      {/* Hero Section */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <h1 className="font-serif text-4xl md:text-6xl font-bold text-foreground mb-6">Welcome to Recipe Book</h1>
-          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Discover delicious recipes from our community of passionate home cooks. Share your culinary creations and
-            explore new flavors from around the world.
-          </p>
+      {/* Hero Section with rotating background */}
+      <section className="relative py-20 px-4 text-center" aria-labelledby="hero-title">
+        <div
+          className="max-w-6xl mx-auto rounded-3xl overflow-hidden ring-1 ring-amber-200 shadow-xl transition-all duration-700"
+          style={{
+            backgroundImage: `linear-gradient(rgba(12, 15, 18, 0.5), rgba(12, 15, 18, 0.5)), url('${backgrounds[bgIndex]}')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          {/* decorative top bar */}
+          <div className="h-2 w-full bg-orange-600" />
 
-          {/* Hero Image */}
-          <div className="mb-12">
-            <Image
-              src="/placeholder-jnkuh.png"
-              alt="Beautiful food spread with various dishes"
-              width={800}
-              height={400}
-              className="rounded-lg shadow-lg mx-auto"
-            />
+          <div className="px-6 md:px-10 py-16 md:py-24">
+            <h1
+              id="hero-title"
+              className="font-serif text-4xl md:text-6xl font-bold text-white mb-6 animate-[fadeIn_900ms_ease-out]"
+            >
+              Discover Your Next <br />
+              <span className="text-orange-400">Favorite Recipe</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto animate-[fadeInUp_900ms_ease-out_150ms_both]">
+              Explore global flavors, share your cooking journey, and find dishes that match your vibe.
+            </p>
+
+            {/* Search bar inside hero */}
+            <div className="flex items-center bg-white rounded-full px-4 py-2 w-[90%] max-w-lg mx-auto shadow-lg mb-8">
+              <Search className="text-gray-500 mr-2" size={20} />
+              <input
+                type="text"
+                placeholder="Search 10,000+ recipes..."
+                className="outline-none flex-1 bg-transparent"
+              />
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/recipes">
+                <Button size="lg" className="bg-orange-600 hover:bg-orange-700 text-white shadow-lg shadow-orange-600/20">
+                  <Utensils className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Explore Recipes
+                </Button>
+              </Link>
+              <Link href="/auth/signup">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="bg-white text-slate-800 border-slate-300 hover:border-orange-600 hover:text-orange-700 transition-colors"
+                >
+                  <Share2 className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Share Your Recipe
+                </Button>
+              </Link>
+            </div>
           </div>
 
-          {/* Main Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/recipes">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto bg-transparent">
-                View Recipes
-              </Button>
-            </Link>
-            <Link href="/add-recipe">
-              <Button size="lg" className="w-full sm:w-auto">
-                Add Recipe
-              </Button>
-            </Link>
+          {/* decorative bottom bar */}
+          <div className="h-2 w-full bg-orange-600" />
+        </div>
+      </section>
+
+      {/* Why Join Section */}
+      <section className="py-16 px-6  bg-amber-50">
+        <h2 className="text-3xl font-bold text-center mb-12">✨ Why Join FlavorBook?</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="bg-amber-50 p-6 rounded-2xl shadow-md text-center">
+            <Bookmark className="h-10 w-10 text-orange-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Save Favorites</h3>
+            <p>Bookmark recipes you love and create your own personalized collection.</p>
+          </div>
+          <div className="bg-amber-50 p-6 rounded-2xl shadow-md text-center">
+            <Calendar className="h-10 w-10 text-orange-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Plan Meals</h3>
+            <p>Create weekly meal plans that keep your cooking exciting & organized.</p>
+          </div>
+          <div className="bg-amber-50 p-6 rounded-2xl shadow-md text-center">
+            <Users className="h-10 w-10 text-orange-600 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Join Community</h3>
+            <p>Connect with food lovers, share tips, and celebrate your passion for cooking.</p>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 px-4 bg-card">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-serif text-3xl font-bold text-center mb-12">Why Choose Recipe Book?</h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-primary-foreground"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    />
-                  </svg>
-                </div>
-                <CardTitle>Discover New Recipes</CardTitle>
-                <CardDescription>
-                  Browse through hundreds of recipes from cuisines around the world. Find your next favorite dish with
-                  our easy-to-use search.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-secondary rounded-lg flex items-center justify-center mb-4">
-                  <svg
-                    className="w-6 h-6 text-secondary-foreground"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
-                </div>
-                <CardTitle>Share Your Creations</CardTitle>
-                <CardDescription>
-                  Upload your own recipes with photos and detailed instructions. Help others recreate your delicious
-                  dishes.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-accent rounded-lg flex items-center justify-center mb-4">
-                  <svg className="w-6 h-6 text-accent-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                    />
-                  </svg>
-                </div>
-                <CardTitle>Smart Search</CardTitle>
-                <CardDescription>
-                  Find recipes by ingredients, cuisine type, or cooking time. Our smart search helps you discover
-                  exactly what you're craving.
-                </CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
+      {/* Quiz CTA Section */}
+      <section className="bg-orange-50 py-20 text-center">
+        <h2 className="text-3xl font-bold mb-4">🎯 Find Your Food Personality</h2>
+        <p className="mb-6 text-slate-600">
+          Take a quick quiz and discover which dish matches your vibe 🍕🥗🍩
+        </p>
+        <Link href="/quiz">
+          <Button className="bg-orange-600 text-white px-6 py-3 rounded-2xl text-lg shadow-lg hover:bg-orange-700">
+            Start Quiz
+          </Button>
+        </Link>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-serif text-3xl font-bold mb-6">Ready to Start Cooking?</h2>
-          <p className="text-lg text-muted-foreground mb-8">
-            Join our community of food lovers and start exploring amazing recipes today.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/recipes">
-              <Button size="lg" variant="outline">
-                Browse Recipes
-              </Button>
-            </Link>
-            <Link href="/auth/signup">
-              <Button size="lg">Get Started</Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Footer />
+
+      {/* Animations */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(4px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
