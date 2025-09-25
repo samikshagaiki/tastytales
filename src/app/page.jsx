@@ -13,9 +13,9 @@ import { Utensils, Share2, Search } from "lucide-react"
 export default function HomePage() {
   // --- Slideshow backgrounds ---
   const backgrounds = [
-    "/images/hero1.jpg",
-    "/images/hero2.jpg",
-    "/images/hero3.jpg",
+    "/images/image1.png",
+    "/images/image2.png",
+    "/images/image3.png",
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
@@ -31,7 +31,7 @@ export default function HomePage() {
       <Navigation />
 
       {/* Hero Section with rotating background */}
-      <section className="relative py-20 px-4 text-center" aria-labelledby="hero-title">
+      <section className="relative py-20 px-16 text-center" aria-labelledby="hero-title">
         <div
           className="max-w-6xl mx-auto rounded-3xl overflow-hidden ring-1 ring-amber-200 shadow-xl transition-all duration-700"
           style={{

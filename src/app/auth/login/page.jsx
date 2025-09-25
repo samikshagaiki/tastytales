@@ -13,7 +13,7 @@ export default function LoginPage() {
         <div
           className="
             w-full max-w-md space-y-6
-            rounded-2xl border border-orange-200/70 bg-white/80 backdrop-blur-md
+            rounded-2xl border border-orange-200/70 backdrop-blur-md
             shadow-xl shadow-orange-900/5 ring-1 ring-stone-200/70
             transition-all duration-300 hover:shadow-2xl hover:shadow-orange-900/10
             auth-fade

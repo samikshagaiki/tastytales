@@ -16,7 +16,7 @@ export function Navigation() {
   const { user, logout } = useAuth()
 
   return (
-    <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
+     <nav className="sticky top-0 z-50 border-b bg-orange-600/85 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -60,7 +60,7 @@ export function Navigation() {
                     <Link href="/my-recipes">My Recipes</Link>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={logout} className="text-destructive">
+                  <DropdownMenuItem onClick={logout} className="text-destructive ">
                     Sign Out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
